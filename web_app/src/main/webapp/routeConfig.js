@@ -36,8 +36,8 @@ app.config(function ($routeProvider, authProvider, $httpProvider, $locationProvi
     profilePromise.then(function(profile) {
       store.set('profile', profile);
       store.set('token', idToken);
+      $location.path('/');
     });
-    $location.path('/');
   });
 
   authProvider.on('loginFailure', function() {
@@ -46,7 +46,6 @@ app.config(function ($routeProvider, authProvider, $httpProvider, $locationProvi
 
   authProvider.on('authenticated', function($location) {
     console.log("Authenticated");
-
   });
 
   jwtInterceptorProvider.tokenGetter = function(store) {
@@ -68,17 +67,15 @@ app.run(function($rootScope, auth, store, jwtHelper, $location) {
   $rootScope.$on('$locationChangeStart', function() {
 
     var token = store.get('token');
-    if (token) {
-      if (!jwtHelper.isTokenExpired(token)) {
+    if (token && !jwtHelper.isTokenExpired(token)) {
         if (!auth.isAuthenticated) {
           //Re-authenticate user if token is valid
           auth.authenticate(store.get('profile'), token);
         }
       } else {
         // Either show the login page or use the refresh token to get a new idToken
-        $location.path('/');
+        $location.path('/login');
       }
-    }
   });
 });
 
