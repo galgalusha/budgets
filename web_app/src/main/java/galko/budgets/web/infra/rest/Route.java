@@ -20,11 +20,7 @@ public class Route {
         this.service = service;
     }
 
-    public Route(String pathPrefix, HttpMethod method, IService service) {
-        this.pathPrefix = pathPrefix;
-        this.method = method;
-        this.requestToJsonMapper = x -> new EmptyRequest();
-        this.service = service;
+    public static FunctionExt<HttpServletRequest, ? extends Object> createEmptyRequest() {
+        return x -> new EmptyRequest();
     }
-
 }

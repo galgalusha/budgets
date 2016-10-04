@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import javax.servlet.http.HttpServletRequest;
 import java.util.function.Function;
 
-public class GsonToRequest<TREQUEST> implements Function<HttpServletRequest, TREQUEST> {
+public class GsonToRequest<TREQUEST> implements FunctionExt<HttpServletRequest, TREQUEST> {
 
     private final Class<TREQUEST> requestType;
 

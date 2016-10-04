@@ -5,7 +5,9 @@ import galko.budgets.business.services.*;
 import org.jooq.lambda.Seq;
 import java.util.Comparator;
 import java.util.List;
+import static galko.budgets.web.infra.rest.AddUserIdFromJwt.addUserId;
 import static galko.budgets.web.infra.rest.PathInfoToRequest.toInteger;
+import static galko.budgets.web.infra.rest.Route.createEmptyRequest;
 import static org.jooq.lambda.Seq.seq;
 
 public class RouteRegistry {
@@ -18,6 +20,7 @@ public class RouteRegistry {
             new Route(
                     "/budgets/rest/budgets",
                     HttpMethod.Get,
+                    createEmptyRequest().andThen(addUserId()),
                     new GetAllBudgetsService()),
 
             new Route(
@@ -35,13 +38,9 @@ public class RouteRegistry {
                     new NewExpenseService())
 
     ).sorted(byPathLengthDesc)
-     .toList();
+    .toList();
 
     public Seq<Route> getRoutes() {
         return seq(routes);
-    }
-
-    private AddUserIdFromJwt addUserId() {
-        return new AddUserIdFromJwt();
     }
 }

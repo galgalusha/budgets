@@ -14,7 +14,7 @@ import java.util.function.Function;
 
 import static org.jooq.lambda.Seq.seq;
 
-public class PathInfoToRequest<TREQUEST> implements Function<HttpServletRequest, TREQUEST> {
+public class PathInfoToRequest<TREQUEST> implements FunctionExt<HttpServletRequest, TREQUEST> {
 
     private final Class<TREQUEST> requestClass;
     private final List<ArgMapper> argMappers = new LinkedList<>();
@@ -80,8 +80,6 @@ public class PathInfoToRequest<TREQUEST> implements Function<HttpServletRequest,
         public String toString() {
             return "{ArgMapper of Index: " + index + "}";
         }
-
-
     }
 
     public static Function<String, Object> toInteger() {
