@@ -1,4 +1,4 @@
 package galko.budgets.business.api.web.dto;
 
-public class Nothing {
+public class EmptyRequest extends Request {
 }

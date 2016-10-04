@@ -1,6 +1,6 @@
 package galko.budgets.business.api.web.dto;
 
-public class NewExpenseRequest {
+public class NewExpenseRequest extends Request {
 
     public int getBudgetId() {
         return budgetId;

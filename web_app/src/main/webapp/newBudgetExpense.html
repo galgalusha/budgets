@@ -1,0 +1,17 @@
+<div>
+
+    <center> <h1> New Expense: {{budget.name}} </h1> </center>
+
+    <hr>
+
+    <center> <h2> Amount </h2> </center>
+
+    <form ng-submit="submitExpense(amount)">
+
+        <input class="fullLineInput" type="number" ng-model="amount" required />
+
+        <input class="fullLineInput" type="submit"/>
+
+    </form>
+
+</div>

@@ -2,14 +2,11 @@ package galko.budgets.business.services;
 
 import galko.budgets.business.api.web.IService;
 import galko.budgets.business.api.web.dto.Budget;
-import galko.budgets.business.api.web.dto.Nothing;
+import galko.budgets.business.api.web.dto.GetBudgetRequest;
 
-import java.util.Arrays;
-import java.util.List;
+public class GetBudgetService implements IService<GetBudgetRequest, Budget> {
 
-public class GetBudgetService implements IService<Integer, Budget> {
-
-    public Budget handle(Integer budgetId) {
+    public Budget handle(GetBudgetRequest request) {
         return Budget.config()
                 .withName("Groceries")
                 .withId(1l)

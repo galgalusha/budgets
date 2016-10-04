@@ -2,14 +2,14 @@ package galko.budgets.business.services;
 
 import galko.budgets.business.api.web.IService;
 import galko.budgets.business.api.web.dto.Budget;
-import galko.budgets.business.api.web.dto.Nothing;
+import galko.budgets.business.api.web.dto.EmptyRequest;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class GetAllBudgetsService implements IService<Nothing, List<Budget>> {
+public class GetAllBudgetsService implements IService<EmptyRequest, List<Budget>> {
 
-    public List<Budget> handle(Nothing nothing) {
+    public List<Budget> handle(EmptyRequest emptyRequest) {
         return Arrays.asList(
                 Budget.config()
                         .withName("Groceries")
