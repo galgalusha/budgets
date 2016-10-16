@@ -1,7 +1,7 @@
 package galko.budgets.web.infra.rest;
 
 import galko.budgets.business.api.web.dto.*;
-import galko.budgets.business.services.*;
+import galko.budgets.business.api.web.services.*;
 import org.jooq.lambda.Seq;
 import java.util.Comparator;
 import java.util.List;

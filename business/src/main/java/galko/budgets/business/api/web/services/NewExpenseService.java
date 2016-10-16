@@ -1,4 +1,4 @@
-package galko.budgets.business.services;
+package galko.budgets.business.api.web.services;
 
 import galko.budgets.business.api.web.IService;
 import galko.budgets.business.api.web.dto.NewExpenseRequest;

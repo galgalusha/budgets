@@ -8,6 +8,7 @@
   <modules>
     <module>business</module>
     <module>web_app</module>
+    <module>memory_business_db</module>
   </modules>
   <name>budgets root project</name>
   <url>http://maven.apache.org</url>
