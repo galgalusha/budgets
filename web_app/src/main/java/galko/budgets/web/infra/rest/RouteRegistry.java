@@ -18,10 +18,10 @@ public class RouteRegistry {
     private final List<Route> routes = Seq.of(
 
             new Route(
-                    "/budgets",
+                    "/activeBills",
                     HttpMethod.Get,
                     createEmptyRequest().andThen(addUserId()),
-                    new GetAllBudgetsService()),
+                    new GetActiveBills()),
 
             new Route(
                     "/budget",

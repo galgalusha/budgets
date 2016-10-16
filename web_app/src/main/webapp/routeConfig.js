@@ -6,8 +6,8 @@ app.config(function ($routeProvider, authProvider, $httpProvider, $locationProvi
 
     .when("/",
       {
-        templateUrl: "budgets.html",
-        controller: "budgetsController"
+        templateUrl: "activeBills.html",
+        controller: "activeBillsController"
       })
 
     .when("/login",

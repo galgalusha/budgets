@@ -7,12 +7,11 @@ import galko.budgets.business.api.web.dto.GetBudgetRequest;
 public class GetBudgetService implements IService<GetBudgetRequest, Budget> {
 
     public Budget handle(GetBudgetRequest request) {
-        return Budget.config()
+        return new Budget.Builder()
                 .withName("Groceries")
                 .withId(1l)
-                .withAllocation(2000)
-                .withUsed(750)
-                .create();
+                .withAmount(2000)
+                .get();
     }
 
 }

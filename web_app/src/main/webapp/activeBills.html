@@ -1,0 +1,16 @@
+
+<div ng-show="activeBills">
+
+    <div ng-repeat="activeBill in activeBills" class="clickableBox" ng-click="onClick(activeBill)">
+
+        <center class="h1InBox">
+            {{activeBill.budgetName}}
+        </center>
+
+        <center class="textInBox">
+            {{100 - calcUsed(activeBill)}}% left of {{activeBill.budgetAmount}}$
+        </center>
+
+    </div>
+
+</div>

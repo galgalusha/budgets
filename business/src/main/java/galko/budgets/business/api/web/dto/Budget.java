@@ -4,42 +4,29 @@ public class Budget {
 
     private long id;
     private String name;
-    private int allocation;
-    private int used;
-
-    public Budget() {
-    }
-
-    public static Builder config() {
-        return new Builder();
-    }
+    private int amount;
 
     public static class Builder {
+        private Budget budget = new Budget();
 
-        private final Budget result = new Budget();
+        public Builder withId(long value) {
+            budget.id = value;
+            return this;
+        }
 
-        public Builder withId(Long value) {
-            result.id = value;
+        public Builder withAmount(int value) {
+            budget.amount = value;
             return this;
         }
 
         public Builder withName(String value) {
-            result.name = value;
+            budget.name = value;
             return this;
         }
 
-        public Builder withAllocation(int value) {
-            result.allocation = value;
-            return this;
+        public Budget get() {
+            return budget;
         }
 
-        public Builder withUsed(int value) {
-            result.used = value;
-            return this;
-        }
-
-        public Budget create() {
-            return result;
-        }
     }
 }
