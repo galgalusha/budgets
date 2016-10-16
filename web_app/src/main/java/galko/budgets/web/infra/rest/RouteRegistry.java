@@ -18,13 +18,13 @@ public class RouteRegistry {
     private final List<Route> routes = Seq.of(
 
             new Route(
-                    "/budgets/rest/budgets",
+                    "/budgets",
                     HttpMethod.Get,
                     createEmptyRequest().andThen(addUserId()),
                     new GetAllBudgetsService()),
 
             new Route(
-                    "/budgets/rest/budget",
+                    "/budget",
                     HttpMethod.Get,
                     new PathInfoToRequest(GetBudgetRequest.class)
                             .parseArg(Index.of(1), toInteger())
@@ -32,7 +32,7 @@ public class RouteRegistry {
                     new GetBudgetService()),
 
             new Route(
-                    "/budgets/rest/newExpense",
+                    "/newExpense",
                     HttpMethod.Post,
                     new GsonToRequest<>(NewExpenseRequest.class).andThen(addUserId()),
                     new NewExpenseService())

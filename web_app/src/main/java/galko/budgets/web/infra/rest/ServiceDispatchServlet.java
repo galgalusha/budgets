@@ -57,7 +57,7 @@ public class ServiceDispatchServlet extends HttpServlet {
     public Optional<Route> resolveRoute(HttpServletRequest request, HttpMethod method) {
         return routeRegistry.getRoutes()
                 .filter(route -> route.method == method)
-                .filter(route -> request.getRequestURI().startsWith(route.pathPrefix))
+                .filter(route -> request.getPathInfo().startsWith(route.pathPrefix))
                 .findFirst();
     }
 
