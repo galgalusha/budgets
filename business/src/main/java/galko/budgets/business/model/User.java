@@ -11,12 +11,14 @@ import static org.jooq.lambda.Seq.seq;
 
 public class User {
 
+    private final ServiceLocator serviceLocator;
     private final IBudgetDba budgetDba;
     private final IBillDba billDba;
     private final ITimeService timeService;
     public final UserId id;
 
     public User(ServiceLocator serviceLocator, UserId id) {
+        this.serviceLocator = serviceLocator;
         this.budgetDba = serviceLocator.resolve(IBudgetDba.class);
         this.billDba = serviceLocator.resolve(IBillDba.class);
         this.timeService = serviceLocator.resolve(ITimeService.class);
@@ -34,7 +36,7 @@ public class User {
         final EndDate minEndDate = EndDate.of(timeService.getCurrentDateUtc());
 
         return seq(billDba.getBillsWithEndDateGreaterThan(this.id.value, minEndDate.value))
-                .map(Bill::new)
+                .map(dbObj -> new Bill(serviceLocator, dbObj))
                 .toList();
     }
 }

@@ -5,7 +5,7 @@ import galko.budgets.persistency.api.query.IBudgetDba;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-
+import java.util.Optional;
 import static org.jooq.lambda.Seq.seq;
 
 public class MemoryBudgetDba implements IBudgetDba {
@@ -17,5 +17,10 @@ public class MemoryBudgetDba implements IBudgetDba {
         return seq(budgets)
                 .filter(x -> x.userId.equals(userIid))
                 .toList();
+    }
+
+    @Override
+    public Optional<BudgetDbo> getById(long id) {
+        return seq(budgets).findFirst(budget -> budget.id == id);
     }
 }
