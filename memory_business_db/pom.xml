@@ -19,7 +19,7 @@
 
         <dependency>
             <groupId>galkoren</groupId>
-            <artifactId>business</artifactId>
+            <artifactId>business_persistency_api</artifactId>
             <version>1.0</version>
         </dependency>
 

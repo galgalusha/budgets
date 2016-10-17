@@ -1,10 +1,10 @@
 package galko.budgets.business.model;
 
-import galko.budgets.business.api.db.dto.BudgetDbo;
 import galko.budgets.business.model.tinytypes.Id;
 import galko.budgets.business.model.tinytypes.BudgetAmount;
 import galko.budgets.business.model.tinytypes.Name;
 import galko.budgets.business.model.tinytypes.UserId;
+import galko.budgets.persistency.api.dto.BudgetDbo;
 
 public class Budget {
 
@@ -17,7 +17,11 @@ public class Budget {
     }
 
     public Budget(BudgetDbo dbObj) {
-        this(dbObj.id, dbObj.userId, dbObj.name, dbObj.amount, dbObj.period);
+        this(Id.of(dbObj.id),
+             UserId.of(dbObj.userId),
+             Name.of(dbObj.name),
+             BudgetAmount.of(dbObj.amount),
+             TimePeriod.valueOf(dbObj.period.toString()));
     }
 
     public final Id id;

@@ -17,11 +17,25 @@
     <name>business</name>
 
     <dependencies>
+
         <dependency>
             <groupId>galkoren</groupId>
             <artifactId>service_locator</artifactId>
             <version>1.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>galkoren</groupId>
+            <artifactId>business_persistency_api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>galkoren</groupId>
+            <artifactId>memory_business_db</artifactId>
+            <version>1.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>

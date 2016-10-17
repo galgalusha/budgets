@@ -1,10 +1,10 @@
 package galko.budgets.business.model;
 
-import galko.budgets.business.api.db.query.IBillDba;
-import galko.budgets.business.api.db.query.IBudgetDba;
 import galko.budgets.business.api.os.ITimeService;
 import galko.budgets.business.model.tinytypes.EndDate;
 import galko.budgets.business.model.tinytypes.UserId;
+import galko.budgets.persistency.api.query.IBillDba;
+import galko.budgets.persistency.api.query.IBudgetDba;
 import galko.service_locator.ServiceLocator;
 import java.util.Collection;
 import static org.jooq.lambda.Seq.seq;
@@ -24,7 +24,7 @@ public class User {
     }
 
     public Collection<Budget> getBudgets() {
-        return seq(budgetDba.getForUser(this.id))
+        return seq(budgetDba.getForUser(this.id.value))
                 .map(Budget::new)
                 .toList();
     }
@@ -33,7 +33,7 @@ public class User {
 
         final EndDate minEndDate = EndDate.of(timeService.getCurrentDateUtc());
 
-        return seq(billDba.getBillsWithEndDateGreaterThan(this.id, minEndDate))
+        return seq(billDba.getBillsWithEndDateGreaterThan(this.id.value, minEndDate.value))
                 .map(Bill::new)
                 .toList();
     }

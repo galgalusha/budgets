@@ -1,7 +1,7 @@
 package galko.budgets.business.model;
 
-import galko.budgets.business.api.db.dto.BillDbo;
 import galko.budgets.business.model.tinytypes.*;
+import galko.budgets.persistency.api.dto.BillDbo;
 
 public class Bill {
 
@@ -14,7 +14,11 @@ public class Bill {
     }
 
     public Bill(BillDbo dbObj) {
-        this(dbObj.userId, dbObj.budgetId, dbObj.startDate, dbObj.endDate, dbObj.billAmount);
+        this(UserId.of(dbObj.userId),
+             BudgetId.of(dbObj.budgetId),
+             StartDate.of(dbObj.startDate),
+             EndDate.of(dbObj.endDate),
+             BillAmount.of(dbObj.billAmount));
     }
 
     public final UserId userId;

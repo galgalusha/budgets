@@ -10,6 +10,7 @@
     <module>business</module>
     <module>memory_business_db</module>
     <module>web_app</module>
+    <module>business_persistency_api</module>
   </modules>
   <name>budgets root project</name>
   <url>http://maven.apache.org</url>

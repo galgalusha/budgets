@@ -1,9 +1,9 @@
 package galko.budgets.web.service_locator;
 
 import galko.budgets.MemoryDbSetup;
-import galko.budgets.business.api.db.query.IBillDba;
-import galko.budgets.business.api.db.query.IBudgetDba;
 import galko.budgets.business.api.os.ITimeService;
+import galko.budgets.persistency.api.query.IBillDba;
+import galko.budgets.persistency.api.query.IBudgetDba;
 import galko.service_locator.ServiceLocator;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;

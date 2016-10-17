@@ -1,7 +1,8 @@
 package galko.budgets;
 
-import galko.budgets.business.api.db.query.IBillDba;
-import galko.budgets.business.api.db.query.IBudgetDba;
+
+import galko.budgets.persistency.api.query.IBillDba;
+import galko.budgets.persistency.api.query.IBudgetDba;
 
 public class MemoryDb {
 
