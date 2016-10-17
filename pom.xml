@@ -6,9 +6,10 @@
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
   <modules>
+    <module>service_locator</module>
     <module>business</module>
-    <module>web_app</module>
     <module>memory_business_db</module>
+    <module>web_app</module>
   </modules>
   <name>budgets root project</name>
   <url>http://maven.apache.org</url>

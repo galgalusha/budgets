@@ -17,6 +17,11 @@
     <name>business</name>
 
     <dependencies>
+        <dependency>
+            <groupId>galkoren</groupId>
+            <artifactId>service_locator</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
 </project>

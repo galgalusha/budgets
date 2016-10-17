@@ -3,13 +3,16 @@ package galko.budgets.business.api.web.services;
 import galko.budgets.business.api.web.IService;
 import galko.budgets.business.api.web.dto.ActiveBill;
 import galko.budgets.business.api.web.dto.EmptyRequest;
-
+import galko.service_locator.ServiceLocator;
 import java.util.Arrays;
 import java.util.List;
 
 public class GetActiveBills implements IService<EmptyRequest, List<ActiveBill>> {
 
-    public List<ActiveBill> handle(EmptyRequest emptyRequest) {
+        public GetActiveBills(ServiceLocator serviceLocator) {
+        }
+
+        public List<ActiveBill> handle(EmptyRequest emptyRequest) {
         return Arrays.asList(
                 ActiveBill.config()
                         .withBudgetName("Groceries")

@@ -5,12 +5,13 @@ import galko.budgets.business.api.db.query.IBillDba;
 import galko.budgets.business.model.tinytypes.EndDate;
 import galko.budgets.business.model.tinytypes.UserId;
 import java.util.Collection;
-import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import static org.jooq.lambda.Seq.seq;
 
 public class MemoryBillDba implements IBillDba {
 
-    public Collection<BillDbo> bills = new LinkedHashSet<>();
+    public List<BillDbo> bills = new LinkedList<>();
 
     @Override
     public Collection<BillDbo> getBillsWithEndDateGreaterThan(UserId id, EndDate minEndDate) {
