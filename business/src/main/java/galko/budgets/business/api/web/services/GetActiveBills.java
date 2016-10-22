@@ -32,13 +32,13 @@ public class GetActiveBills implements IService<EmptyRequest, List<ActiveBill>> 
 
         final Seq<Bill> activeBills = seq(budgets).map(Budget::getActiveBill);
 
-        final BiPredicate<Bill, Budget> HavingSameBudgetId = (bill, budget) -> bill.budgetId.value == budget.id.value;
+        final BiPredicate<Bill, Budget> HavingSameBudgetId = (bill, budget) -> bill.budgetId.value == budget.id.getValue();
 
         return activeBills.innerJoin(budgets, HavingSameBudgetId)
                 .map(pair -> ActiveBill.config()
                                 .withBillAmount(pair.v1().billAmount.value)
                                 .withBudgetAmount(pair.v2().amount.value)
-                                .withBudgetId(pair.v2().id.value)
+                                .withBudgetId(pair.v2().id.getValue())
                                 .withBudgetName(pair.v2().name.value)
                                 .create())
                 .toList();

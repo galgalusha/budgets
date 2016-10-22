@@ -44,14 +44,18 @@ public class Bill {
         dbObj.billAmount = this.billAmount.value;
         dbObj.endDate = this.endDate.value;
         dbObj.startDate = this.startDate.value;
-        dbObj.id = this.id.value;
+
+        if (!this.id.isEmpty()) {
+            dbObj.id = this.id.getValue();
+        }
+
         return dbObj;
     }
 
     public Bill addExpense(BillAmount amount) {
         BillDbo dbObj = toDbObject();
         dbObj.billAmount += amount.value;
-        billDba.save(dbObj);
+        billDba.update(dbObj);
         return new Bill(serviceLocator, dbObj);
     }
 }

@@ -1,9 +1,9 @@
 package galko.budgets.persistency.api;
 
-public class SaveResult {
+public class InsertResult {
     public final long id;
 
-    public SaveResult(long id) {
+    public InsertResult(long id) {
         this.id = id;
     }
 }

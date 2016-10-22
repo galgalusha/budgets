@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ServiceLocator {
 
-    private final static Map<String, Object> registry = new HashMap<>();
+    private final Map<String, Object> registry = new HashMap<>();
 
     public void register(Class clazz, Object impl) {
         registry.put(clazz.getCanonicalName(), impl);

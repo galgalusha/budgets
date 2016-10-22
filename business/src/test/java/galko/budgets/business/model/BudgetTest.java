@@ -37,13 +37,15 @@ public class BudgetTest {
         when(timeServiceMock.getCurrentDateUtc()).thenReturn(Date.from(ZonedDateTime.now(ZoneOffset.UTC).toInstant()));
     }
 
-    private final Budget DefaultBudget = new Budget(
-            serviceLocator,
-            Id.of(1l),
-            UserId.of("galkoren"),
-            Name.of("groceries"),
-            BudgetAmount.of(1000),
-            new Monthly(timeServiceMock));
+    private Budget defaultBudget() {
+        return new Budget(
+                serviceLocator,
+                Id.of(1l),
+                UserId.of("galkoren"),
+                Name.of("groceries"),
+                BudgetAmount.of(1000),
+                new Monthly(timeServiceMock));
+    }
 
     private final static Date Yesterday = Date.from(ZonedDateTime.now(ZoneOffset.UTC).minusDays(1).toInstant());
 
@@ -57,7 +59,7 @@ public class BudgetTest {
     @Test
     public void getActiveBillReturnsTheOnlyBillThatIsNotExpiredFromTheBillHistory() {
 
-        final Budget budget = DefaultBudget;
+        final Budget budget = defaultBudget();
 
         setupBillsInDb(
                 billDbo(budget, Id.of(10l), StartDate.of(TwoDaysAgo), EndDate.of(Yesterday)),
@@ -67,13 +69,13 @@ public class BudgetTest {
 
         final Bill activeBill = budget.getActiveBill();
 
-        assertThat(activeBill.id.value, equalTo(11l));
+        assertThat(activeBill.id.getValue(), equalTo(11l));
     }
 
     @Test
     public void getActiveBillCreatesNewBillWithZeroAmount() {
 
-        final Budget budget = DefaultBudget;
+        final Budget budget = defaultBudget();
 
         setupBillsInDb(NoBills);
 
@@ -85,20 +87,20 @@ public class BudgetTest {
     @Test
     public void getActiveBillCreatesNewBillWithBudgetAndUserIds() {
 
-        final Budget budget = DefaultBudget;
+        final Budget budget = defaultBudget();
 
         setupBillsInDb(NoBills);
 
         final Bill activeBill = budget.getActiveBill();
 
-        assertThat(activeBill.budgetId.value, equalTo(budget.id.value));
+        assertThat(activeBill.budgetId.value, equalTo(budget.id.getValue()));
         assertThat(activeBill.userId.value, equalTo(budget.userId.value));
     }
 
     @Test
     public void when_GetActiveBillCreatesNewBill_then_ItHasStartAndEndDate() {
 
-        final Budget budget = DefaultBudget;
+        final Budget budget = defaultBudget();
 
         setupBillsInDb(NoBills);
 
@@ -112,7 +114,7 @@ public class BudgetTest {
     @Test
     public void getActiveBillCreatesNewBillWhenAllBillsExpired() {
 
-        final Budget budget = DefaultBudget;
+        final Budget budget = defaultBudget();
 
         setupBillsInDb(
                 billDbo(budget, Id.of(1000l), StartDate.of(TwoDaysAgo), EndDate.of(Yesterday))
@@ -122,14 +124,14 @@ public class BudgetTest {
 
         final BillDbo newInDb = seq(billDba.bills).findFirst(bill -> bill.id != 1000l).get();
 
-        assertThat(activeBill.id.value, equalTo(newInDb.id));
+        assertThat(activeBill.id.getValue(), equalTo(newInDb.id));
     }
 
 
     @Test
     public void getActiveBillCreatesNewBillWhenThereIsNoBillHistory() {
 
-        final Budget budget = DefaultBudget;
+        final Budget budget = defaultBudget();
 
         setupBillsInDb(NoBills);
 
@@ -137,12 +139,12 @@ public class BudgetTest {
 
         final BillDbo newInDb = billDba.bills.get(0);
 
-        assertThat(activeBill.id.value, equalTo(newInDb.id));
+        assertThat(activeBill.id.getValue(), equalTo(newInDb.id));
     }
 
     private BillDbo billDbo(Budget budget, Id idArg, StartDate start, EndDate end) {
         return new BillDbo() {{
-            id = idArg.value;
+            id = idArg.getValue();
             userId = budget.userId.value;
             startDate = start.value;
             endDate = end.value;
