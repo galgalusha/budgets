@@ -10,10 +10,8 @@ import galko.budgets.persistency.api.query.IBudgetDba;
 import galko.service_locator.ServiceLocator;
 import org.junit.Before;
 import org.junit.Test;
-import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Collection;
-import java.util.Date;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.Assert.assertThat;
@@ -34,7 +32,7 @@ public class UserTest {
         serviceLocator.register(IBillDba.class, billDba);
         serviceLocator.register(ITimeService.class, timeServiceMock);
 
-        when(timeServiceMock.getCurrentDateUtc()).thenReturn(Date.from(ZonedDateTime.now(ZoneOffset.UTC).toInstant()));
+        when(timeServiceMock.getCurrent()).thenReturn(ZonedDateTime.now());
     }
 
     @Test

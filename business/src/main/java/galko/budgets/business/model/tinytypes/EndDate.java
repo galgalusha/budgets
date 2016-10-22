@@ -1,16 +1,16 @@
 package galko.budgets.business.model.tinytypes;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 public class EndDate {
 
-    public EndDate(Date value) {
+    public EndDate(ZonedDateTime value) {
         this.value = value;
     }
 
-    public final Date value;
+    public final ZonedDateTime value;
 
-    public static EndDate of(Date value) {
+    public static EndDate of(ZonedDateTime value) {
         return new EndDate(value);
     }
 }

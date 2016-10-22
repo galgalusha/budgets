@@ -1,13 +1,13 @@
 package galko.budgets.persistency.api.dto;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 public class BillDbo {
 
     public long id;
     public String userId;
     public long budgetId;
-    public Date startDate;
-    public Date endDate;
+    public ZonedDateTime startDate;
+    public ZonedDateTime endDate;
     public int billAmount;
 }

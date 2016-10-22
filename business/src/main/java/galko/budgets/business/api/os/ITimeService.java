@@ -1,7 +1,7 @@
 package galko.budgets.business.api.os;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 public interface ITimeService {
-    Date getCurrentDateUtc();
+    ZonedDateTime getCurrent();
 }

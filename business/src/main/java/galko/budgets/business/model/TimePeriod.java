@@ -1,7 +1,8 @@
 package galko.budgets.business.model;
 
 import galko.budgets.business.api.os.ITimeService;
-import java.util.Date;
+
+import java.time.ZonedDateTime;
 
 public abstract class TimePeriod {
 
@@ -11,9 +12,9 @@ public abstract class TimePeriod {
         this.timeService = timeService;
     }
 
-    public abstract Date beginningOfcurrent();
+    public abstract ZonedDateTime beginningOfcurrent();
 
-    public abstract Date endOfcurrent();
+    public abstract ZonedDateTime endOfcurrent();
 
     public static TimePeriod fromDbo(
             ITimeService timeService,

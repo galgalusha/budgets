@@ -3,6 +3,8 @@ package galko.budgets;
 import galko.budgets.persistency.api.InsertResult;
 import galko.budgets.persistency.api.dto.BillDbo;
 import galko.budgets.persistency.api.query.IBillDba;
+
+import java.time.ZonedDateTime;
 import java.util.*;
 import static org.jooq.lambda.Seq.seq;
 
@@ -11,10 +13,10 @@ public class MemoryBillDba implements IBillDba {
     public List<BillDbo> bills = new LinkedList<>();
 
     @Override
-    public Collection<BillDbo> getBillByBudgetIdWithEndDateGreaterThan(long budgetId, Date minEndDate) {
+    public Collection<BillDbo> getBillByBudgetIdWithEndDateGreaterThan(long budgetId, ZonedDateTime minEndDate) {
         return seq(bills)
                 .filter(x -> x.budgetId == budgetId)
-                .filter(x -> x.endDate.after(minEndDate))
+                .filter(x -> !x.endDate.isBefore(minEndDate))
                 .toList();
     }
 

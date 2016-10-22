@@ -11,9 +11,7 @@ import galko.service_locator.ServiceLocator;
 import org.jooq.lambda.Seq;
 import org.junit.Before;
 import org.junit.Test;
-import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.Date;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.jooq.lambda.Seq.seq;
 import static org.junit.Assert.assertThat;
@@ -34,7 +32,7 @@ public class BudgetTest {
         serviceLocator.register(IBillDba.class, billDba);
         serviceLocator.register(ITimeService.class, timeServiceMock);
 
-        when(timeServiceMock.getCurrentDateUtc()).thenReturn(Date.from(ZonedDateTime.now(ZoneOffset.UTC).toInstant()));
+        when(timeServiceMock.getCurrent()).thenReturn(ZonedDateTime.now());
     }
 
     private Budget defaultBudget() {
@@ -47,11 +45,11 @@ public class BudgetTest {
                 new Monthly(timeServiceMock));
     }
 
-    private final static Date Yesterday = Date.from(ZonedDateTime.now(ZoneOffset.UTC).minusDays(1).toInstant());
+    private final static ZonedDateTime Yesterday = ZonedDateTime.now().minusDays(1);
 
-    private final static Date TwoDaysAgo = Date.from(ZonedDateTime.now(ZoneOffset.UTC).minusDays(2).toInstant());
+    private final static ZonedDateTime TwoDaysAgo = ZonedDateTime.now().minusDays(2);
 
-    private final static Date Tomorrow = Date.from(ZonedDateTime.now(ZoneOffset.UTC).plusDays(1).toInstant());
+    private final static ZonedDateTime Tomorrow = ZonedDateTime.now().plusDays(1);
 
     private final static BillDbo[] NoBills = new BillDbo[0];
 
@@ -146,6 +144,7 @@ public class BudgetTest {
         return new BillDbo() {{
             id = idArg.getValue();
             userId = budget.userId.value;
+            budgetId = budget.id.getValue();
             startDate = start.value;
             endDate = end.value;
         }};

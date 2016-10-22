@@ -2,9 +2,7 @@ package galko.budgets;
 
 import galko.budgets.persistency.api.dto.BillDbo;
 import galko.budgets.persistency.api.dto.BudgetDbo;
-import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.List;
 
 public class MemoryDbSetup {
@@ -28,8 +26,8 @@ public class MemoryDbSetup {
         bills.add(new BillDbo() {{
             userId = USER_ID;
             budgetId = 1l;
-            endDate = Date.from(ZonedDateTime.now(ZoneOffset.UTC).plusDays(1).toInstant());
-            startDate = Date.from(ZonedDateTime.now(ZoneOffset.UTC).minusDays(1).toInstant());
+            endDate = ZonedDateTime.now().plusDays(1);
+            startDate = ZonedDateTime.now().minusDays(1);
             billAmount = 0;
         }});
     }

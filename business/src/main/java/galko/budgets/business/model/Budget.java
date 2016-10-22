@@ -51,7 +51,7 @@ public class Budget {
     }
 
     private Optional<Bill> findActiveBillInDb() {
-        Collection<BillDbo> fromDb = billDba.getBillByBudgetIdWithEndDateGreaterThan(this.id.getValue(), timeService.getCurrentDateUtc());
+        Collection<BillDbo> fromDb = billDba.getBillByBudgetIdWithEndDateGreaterThan(this.id.getValue(), timeService.getCurrent());
         return fromDb.isEmpty()
                 ? Optional.<Bill>empty()
                 : Optional.of(new Bill(serviceLocator, first(fromDb)));

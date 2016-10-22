@@ -5,9 +5,7 @@ import galko.budgets.business.api.os.ITimeService;
 import galko.budgets.persistency.api.query.IBillDba;
 import galko.budgets.persistency.api.query.IBudgetDba;
 import galko.service_locator.ServiceLocator;
-import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.Date;
 
 public class ServiceLocatorSetup {
 
@@ -21,8 +19,8 @@ public class ServiceLocatorSetup {
 
     private static class TimeService implements ITimeService {
         @Override
-        public Date getCurrentDateUtc() {
-            return Date.from(ZonedDateTime.now(ZoneOffset.UTC).toInstant());
+        public ZonedDateTime getCurrent() {
+            return ZonedDateTime.now();
         }
     }
 }
