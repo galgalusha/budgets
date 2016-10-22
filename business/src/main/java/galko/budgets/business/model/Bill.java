@@ -37,7 +37,7 @@ public class Bill {
                 BillAmount.of(dbObj.billAmount));
     }
 
-    private BillDbo toDbObject() {
+    public BillDbo toDbObject() {
         BillDbo dbObj = new BillDbo();
         dbObj.userId = this.userId.value;
         dbObj.budgetId = this.budgetId.value;
