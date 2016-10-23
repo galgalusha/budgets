@@ -21,6 +21,13 @@ app.config(function ($routeProvider, authProvider, $httpProvider, $locationProvi
         templateUrl: "newBudgetExpense.html",
         controller: "newBudgetExpenseController"
       })
+
+    .when("/newBudget",
+      {
+        templateUrl: "newBudget.html",
+        controller: "newBudgetController"
+      })
+
   ;
 
 

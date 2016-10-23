@@ -12,8 +12,8 @@ public class ServiceLocatorSetup {
     public final static ServiceLocator serviceLocator = new ServiceLocator();
 
     static {
-        serviceLocator.register(IBillDba.class, MemoryDbSetup.db.getBillDba());
-        serviceLocator.register(IBudgetDba.class, MemoryDbSetup.db.getBudgetDba());
+        serviceLocator.register(IBillDba.class, MemoryDbSetup.db.billDba);
+        serviceLocator.register(IBudgetDba.class, MemoryDbSetup.db.budgetDba);
         serviceLocator.register(ITimeService.class, new TimeService());
     }
 

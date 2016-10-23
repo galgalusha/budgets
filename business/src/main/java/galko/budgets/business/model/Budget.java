@@ -6,6 +6,7 @@ import galko.budgets.persistency.api.InsertResult;
 import galko.budgets.persistency.api.dto.BillDbo;
 import galko.budgets.persistency.api.dto.BudgetDbo;
 import galko.budgets.persistency.api.query.IBillDba;
+import galko.budgets.persistency.api.query.IBudgetDba;
 import galko.service_locator.ServiceLocator;
 import java.util.Collection;
 import java.util.Optional;
@@ -15,11 +16,13 @@ public class Budget {
     private final ServiceLocator serviceLocator;
     private final ITimeService timeService;
     private final IBillDba billDba;
+    private final IBudgetDba budgetDba;
 
     public Budget(ServiceLocator serviceLocator, Id id, UserId userId, Name name, BudgetAmount amount, TimePeriod period) {
         this.serviceLocator = serviceLocator;
         this.timeService = serviceLocator.resolve(ITimeService.class);
         this.billDba = serviceLocator.resolve(IBillDba.class);
+        this.budgetDba = serviceLocator.resolve(IBudgetDba.class);
         this.id = id;
         this.userId = userId;
         this.name = name;
@@ -34,6 +37,18 @@ public class Budget {
                 Name.of(dbObj.name),
                 BudgetAmount.of(dbObj.amount),
                 TimePeriod.fromDbo(serviceLocator.resolve(ITimeService.class), dbObj.period));
+    }
+
+    public BudgetDbo toDbo() {
+        BudgetDbo dbo = new BudgetDbo();
+        dbo.amount = this.amount.value;
+        dbo.name = this.name.value;
+        dbo.period = this.period.toDbo();
+        dbo.userId = this.userId.value;
+        if (!this.id.isEmpty()) {
+            dbo.id = this.id.getValue();
+        }
+        return dbo;
     }
 
     public final Id id;
@@ -74,5 +89,22 @@ public class Budget {
         dbObj.id = insertResult.id;
 
         return new Bill(serviceLocator, dbObj);
+    }
+
+    public Budget save() {
+        if (this.id.isEmpty()) {
+            return insertToDb();
+        }
+        else {
+            budgetDba.update(toDbo());
+            return this;
+        }
+    }
+
+    private Budget insertToDb() {
+        BudgetDbo dbo = toDbo();
+        InsertResult insertResult = budgetDba.insert(dbo);
+        dbo.id = insertResult.id;
+        return new Budget(serviceLocator, dbo);
     }
 }

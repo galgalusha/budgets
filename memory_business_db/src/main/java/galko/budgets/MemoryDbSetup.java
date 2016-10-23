@@ -11,8 +11,8 @@ public class MemoryDbSetup {
 
     static {
 
-        final List<BudgetDbo> budgets = ((MemoryBudgetDba) db.getBudgetDba()).budgets;
-        final List<BillDbo> bills = ((MemoryBillDba) db.getBillDba()).bills;
+        final List<BudgetDbo> budgets = db.budgetDba.budgets;
+        final List<BillDbo> bills = db.billDba.bills;
         final String USER_ID = "facebook|10210336859600830";
 
         budgets.add(new BudgetDbo() {{
@@ -23,12 +23,5 @@ public class MemoryDbSetup {
             period = galko.budgets.persistency.api.dto.TimePeriod.Month;
         }});
 
-        bills.add(new BillDbo() {{
-            userId = USER_ID;
-            budgetId = 1l;
-            endDate = ZonedDateTime.now().plusDays(1);
-            startDate = ZonedDateTime.now().minusDays(1);
-            billAmount = 0;
-        }});
     }
 }

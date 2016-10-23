@@ -26,4 +26,6 @@ public abstract class TimePeriod {
         }
 
     }
+
+    public abstract galko.budgets.persistency.api.dto.TimePeriod toDbo();
 }

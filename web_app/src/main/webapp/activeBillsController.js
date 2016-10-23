@@ -12,8 +12,12 @@ angular
       return Math.round((100 * activeBill.billAmount) / activeBill.budgetAmount);
     }
 
-    $scope.onClick = function(activeBill) {
+    $scope.onClickNewExpense = function(activeBill) {
       $location.path("/newExpense/budget/" + activeBill.budgetId);
+    }
+
+    $scope.onClickNewBudget = function() {
+      $location.path("/newBudget");
     }
 
   });

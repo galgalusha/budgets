@@ -1,7 +1,7 @@
 
 <div ng-show="activeBills">
 
-    <div ng-repeat="activeBill in activeBills" class="clickableBox" ng-click="onClick(activeBill)">
+    <div ng-repeat="activeBill in activeBills" class="clickableBox" ng-click="onClickNewExpense(activeBill)">
 
         <center class="h1InBox">
             {{activeBill.budgetName}}
@@ -12,5 +12,7 @@
         </center>
 
     </div>
+
+    <div class="circleButton" ng-click="onClickNewBudget()">+</div>
 
 </div>

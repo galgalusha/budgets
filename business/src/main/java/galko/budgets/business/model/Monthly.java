@@ -5,7 +5,7 @@ import java.time.ZonedDateTime;
 
 public class Monthly extends TimePeriod {
 
-    protected Monthly(ITimeService timeService) {
+    public Monthly(ITimeService timeService) {
         super(timeService);
     }
 
@@ -18,5 +18,10 @@ public class Monthly extends TimePeriod {
     public ZonedDateTime endOfcurrent() {
         final ZonedDateTime now = timeService.getCurrent();
         return now.withDayOfMonth(now.getMonth().maxLength());
+    }
+
+    @Override
+    public galko.budgets.persistency.api.dto.TimePeriod toDbo() {
+        return galko.budgets.persistency.api.dto.TimePeriod.Month;
     }
 }

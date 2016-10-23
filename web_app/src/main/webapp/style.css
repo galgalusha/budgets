@@ -20,3 +20,17 @@
   width: 80%;
   margin: 20px auto;
 }
+
+.circleButton {
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: green;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+  margin: 20px;
+}

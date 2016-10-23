@@ -39,7 +39,14 @@ public class RouteRegistry {
                     "/newExpense",
                     HttpMethod.Post,
                     new GsonToRequest<>(NewExpenseRequest.class).andThen(addUserId()),
-                    new NewExpenseService(serviceLocator))
+                    new NewExpenseService(serviceLocator)),
+
+            new Route(
+                    "/newBudget",
+                    HttpMethod.Post,
+                    new GsonToRequest<>(NewBudgetRequest.class).andThen(addUserId()),
+                    new NewBudgetService(serviceLocator))
+
 
     ).sorted(byPathLengthDesc)
     .toList();
